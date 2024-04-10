@@ -1,0 +1,40 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{% static 'incoms/layout.css' %}">
+    </head>
+    <body>
+        <div class="navbar">
+            <nav>
+                <h2>TECHNOMATIC inCOMS</h2>
+                <ul>
+                {% if user.is_authenticated %}
+                  <li><a href="#">Item 1</a></li>
+                  <li><a href="#">Item 2</a></li>
+                  <li><a href="#">Item 3</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'login' %}">Log In</a>
+                </li>
+                <li><a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+                </ul>
+              </nav>
+        </div>
+        {% if user.is_authenticated %}
+        <div class="buttons">
+            <button class="btn third">SERVICE LOGS</button>
+            <button class="btn third">ΠΑΡΑΓΓΕΛΙΕΣ ΕΞΩΤΕΡΙΚΟΥ</button>
+        </div>
+        {% endif %}
+
+    </body>
+
+</html>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
