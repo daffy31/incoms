@@ -4,7 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'incoms/layout.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
         <div class="navbar">
@@ -12,25 +14,19 @@
                 <h2>TECHNOMATIC inCOMS</h2>
                 <ul>
                 {% if user.is_authenticated %}
-                  <li><a href="#">Item 1</a></li>
-                  <li><a href="#">Item 2</a></li>
-                  <li><a href="#">Item 3</a></li>
+                  <li class="btn third"><a href="{% url 'cLogs' %}">COMPRESSORS LOG</a></li>
+                  <li class="btn third"><a href="{% url 'cLogs' %}">ΠΑΡΑΓΓΕΛΙΕΣ ΕΞΩΤΕΡΙΚΟΥ</a></li>
+                  <li class="btn third"><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
-                <li><a class="nav-link" href="{% url 'login' %}">Log In</a>
+                <li class="btn third"><a class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
-                <li><a class="nav-link" href="{% url 'register' %}">Register</a>
+                <li class="btn third"><a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
                 {% endif %}
                 </ul>
               </nav>
         </div>
-        {% if user.is_authenticated %}
-        <div class="buttons">
-            <button class="btn third">SERVICE LOGS</button>
-            <button class="btn third">ΠΑΡΑΓΓΕΛΙΕΣ ΕΞΩΤΕΡΙΚΟΥ</button>
-        </div>
-        {% endif %}
-
+       
     </body>
 
 </html>

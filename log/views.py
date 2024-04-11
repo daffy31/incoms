@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import User
+from .models import User, cList
 
 # Create your views here.
 def index(request):
@@ -28,11 +28,9 @@ def login_view(request):
     else:
         return render(request, "incoms/login.html")
 
-
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
-
 
 def register(request):
     if request.method == "POST":
@@ -59,3 +57,9 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "incoms/register.html")
+    
+def cLogs(request):
+  return render(request, "incoms/cLogs.html")
+
+def createEntry(request):
+    return HttpResponse("Test")
