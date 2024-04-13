@@ -8,7 +8,11 @@ urlpatterns = [
     path("logout", views.logout_view, name="logout"),
     path("register", views.register, name="register"),
     path("cLogs", views.cLogs,name="cLogs"),
-    path("createEntry", views.createEntry, name="createEntry"),
+    path("newEntry", views.newEntry, name="newEntry"),
+    path("newCEtry", views.newCEtry, name="newCEtry"),
+    path("itemview/<int:id>", views.itemview, name="itemview"),
+    
+
    
 
 ]

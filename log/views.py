@@ -6,8 +6,14 @@ from django.urls import reverse
 from .models import User, cList
 
 # Create your views here.
+
 def index(request):
-    return render(request, "incoms/layout.html")
+    activeItems = cList.objects.all()
+    
+    return render(request, "incoms/index.html",{
+        "activeItems":activeItems,
+        
+})
 
 def login_view(request):
     if request.method == "POST":
@@ -59,7 +65,50 @@ def register(request):
         return render(request, "incoms/register.html")
     
 def cLogs(request):
-  return render(request, "incoms/cLogs.html")
+  
+        activeItems = cList.objects.all()
+    
+        return render(request, "incoms/cLogs.html",{
+            "activeItems":activeItems,
+            
+        })
 
-def createEntry(request):
-    return HttpResponse("Test")
+
+def newEntry(request):
+  return render(request, "incoms/newEntry.html")
+
+def newCEtry(request):
+
+    if request.method == "POST":
+        Vcustomer = request.POST["customer"]
+        Vmodel = request.POST["model"]
+        Vserial = request.POST["serial"]
+        VsDate = request.POST["sDate"] #This goes to html name attr
+
+        #Get Data to create instance cause it is a foreign key
+        
+        # Create new object from models
+        # We set the previous variable to our model variable
+        newItem= cList(
+            cOwner = Vcustomer,
+            cModel = Vmodel,
+            cSerial = Vserial,
+            cBuyDate = VsDate,
+            
+        )
+        # We save the new object to our database
+        newItem.save()
+
+        return HttpResponseRedirect(reverse(index))
+    
+def itemview(request, id):
+    
+    #id is byDefault the primary key in Django (i can change it if i want)
+    itemDetails = cList.objects.get(id = id)
+    
+    return render(request, "incoms/itemview.html", {
+
+        
+        "itemDetails":itemDetails,
+       
+    })

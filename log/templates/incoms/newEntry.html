@@ -1,0 +1,41 @@
+{% extends "incoms/layout.html" %}
+
+{% block body %}
+    <h2>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h2>
+
+<form action="{% url 'newCEtry' %}" method="POST">
+    {%csrf_token%}
+    <div>
+        <span>ΠΕΛΑΤΗΣ</span>
+        <input type="text"  name="customer">
+    </div>
+
+    <div>
+        <span>MODEL</span>
+        <input type="text"  name="model">
+    </div>
+      
+    <div>
+        <span>S/N</span>
+        <input type="text"  name="serial">
+    </div>
+
+    <div>
+        <span>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗ</span>
+        <input type="date" name="sDate">
+    </div>
+
+    <div style="padding-top: 1rem;">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+
+</div>
+
+
+
+
+
+  
+</form>
+    
+{% endblock %}
