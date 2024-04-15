@@ -1,11 +1,18 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
-    <h2>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h2>
+    <h1>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h1>
 
 <form action="{% url 'newCEtry' %}" method="POST">
     {%csrf_token%}
-    <div>
+    <fieldset>
+        <label>ΕΠΩΝΥΜΙΑ: <input id="first-name" name="customer" type="text" required /></label>
+        <label>MODEL <input id="last-name" name="model" type="text" required /></label>
+        <label>S/N: <input id="email" name="serial" type="text" required /></label>
+        <label>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗΣ: <input id="new-password" name="sDate" type="date" required /></label>
+      </fieldset>
+
+    {% comment %} <div>
         <span>ΠΕΛΑΤΗΣ</span>
         <input type="text"  name="customer">
     </div>
@@ -21,12 +28,12 @@
     </div>
 
     <div>
-        <span>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗ</span>
+        <span>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗΣ</span>
         <input type="date" name="sDate">
-    </div>
+    </div> {% endcomment %}
 
-    <div style="padding-top: 1rem;">
-        <button type="submit" class="btn btn-success">Save</button>
+    <div>
+        <button class="btn third" type="submit">Save</button>
     </div>
 
 </div>

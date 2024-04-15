@@ -3,12 +3,12 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    background: #ffffff;
+    background: white;
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
   }
   
-  
+/* BUTTONS STYLE */
 .btn {
     box-sizing: border-box;
     -webkit-appearance: none;
@@ -40,24 +40,42 @@ html, body {
     border-color: #FA8E2A;
     color: #fff;
     box-shadow: 0 0 40px 40px #FA8E2A inset, 0 0 0 0 #FA8E2A;
-    transition: all 150ms ease-in-out;
+    transition: all 0.2s ease-in-out;
   }
   .third:hover {
     box-shadow: 0 0 10px 0 #FA8E2A inset, 0 0 10px 4px #FA8E2A;
   }
 
-  nav {
-    display: flex; /* 1 */
-    justify-content: space-between; /* 2 */
-    padding: 1rem 2rem; /* 3 */
-    background: #cfd8dc; /* 4 */
-    max-height: 50px;
-    margin-top: 0.5rem;
-  }
+
+/* MENU */
+  ul {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    list-style-type: none;
   
-  nav ul {
-    display: flex; /* 5 */
-    list-style: none; /* 6 */
+    li {
+      padding: 1px 0;
+  
+      a {
+        --fill-color: orange;
+        position: relative;
+        display: block;
+        padding: 4px 0;
+        font: 700 3rem Raleway, sans-serif;
+        text-decoration: none;
+        text-transform: uppercase;
+        -webkit-text-stroke: 2px var(--fill-color);
+        background: linear-gradient(var(--fill-color) 0 100%) left / 0 no-repeat;
+        color: transparent;
+        background-clip: text;
+        transition: 1s linear;
+  
+        &:hover {
+          background-size: 100%;
+        }
+      }
+    }
   }
   
   nav li {
@@ -69,11 +87,116 @@ html, body {
     color: #0d47a1
   }
 
-table{
-  width: 100%;
+
+
+
+
+/* TABLE */
+
+tbody td {
+  /* 1. Animate the background-color
+     from transparent to white on hover */
+  background-color: rgba(255,255,255,0);
+  transition: all 0.5s linear; 
+  transition-delay: 0.3s, 0s;
+  /* 2. Animate the opacity on hover */
+  opacity: 0.6;
+  background-color: orange;
+}
+tbody tr:hover td {
+  background-color: white;
+  transition-delay: 0s, 0s;
+  opacity: 1;
+  /* font-size: 1.5rem; */
 }
 
-tr:nth-child(even){
+td {
+  /* 3. Scale the text using transform on hover */
+  transform-origin: center;
+  transition-property: transform;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in-out;
+  text-align: center;
+}
+
+/* tr:nth-child(even){
   background-color: #FA8E2A;
+} */
+
+/* tr:hover td {
+  transform: scale(0.7);
+} */
+
+
+/* Codepen styling */
+* { box-sizing: border-box }
+
+table {
+  width: 90%;
+  margin: 0 5%;
+  text-align: left;
+}
+th, td {
+  padding: 0.5em;
 }
 
+/* FORM */
+
+h1, p {
+  margin: 1em auto;
+  text-align: center;
+}
+
+form {
+  width: 60vw;
+  max-width: 500px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding-bottom: 2em;
+}
+
+fieldset {
+  border: none;
+  padding: 2rem 0;
+  border-bottom: 3px solid #3b3b4f;
+}
+
+fieldset:last-of-type {
+  border-bottom: none;
+}
+
+label {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+input,
+textarea,
+select {
+  margin: 10px 0 0 0;
+  width: 100%;
+  min-height: 2em;
+}
+
+input, textarea {
+  background-color: #0a0a23;
+  border: 1px solid #0a0a23;
+  color: #ffffff;
+}
+
+.inline {
+  width: unset;
+  margin: 0 0.5em 0 0;
+  vertical-align: middle;
+}
+
+input[type="submit"] {
+  display: block;
+  width: 60%;
+  margin: 1em auto;
+  height: 2em;
+  font-size: 1.1rem;
+  background-color: #3b3b4f;
+  border-color: white;
+  min-width: 300px;
+}

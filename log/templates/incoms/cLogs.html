@@ -1,17 +1,20 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
-    <h2>Active Listings</h2>
+    <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
         
     <!-- To .itemTitle einai apo ta models -->
     <table>
+      <thead>
         <tr>
           <th>ΕΠΩΝΥΜΙΑ</th>
           <th>MODEL</th>
           <th></th>
         </tr>
+      </thead>
+      <tbody>
     {% for item in activeItems %}
-    <div>
+    
         
             <tr>
               <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
@@ -20,11 +23,11 @@
             </tr>
            
           
-       
-    </div>
+            <tbody>
+    
     {%endfor%}
 </table>
 
-    <button class="btn third"type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
+    <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
     
 {% endblock %}
