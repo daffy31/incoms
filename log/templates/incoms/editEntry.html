@@ -1,0 +1,43 @@
+{% extends "incoms/layout.html" %}
+
+{% block body %}
+    <h2>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h2>
+
+<form action="{% url 'saveEdit' id=itemDetails.id %}" method="POST">
+    {%csrf_token%}
+    <div>
+        <span>ΠΕΛΑΤΗΣ</span>
+        <input type="text"  name="customer" value="{{itemDetails.cOwner}}">
+    </div>
+
+    <div>
+        <span>MODEL</span>
+        <input type="text"  name="model" value="{{itemDetails.cModel}}">
+    </div>
+      
+    <div>
+        <span>S/N</span>
+        <input type="text"  name="serial" value="{{itemDetails.cSerial}}">
+    </div>
+
+    <div>
+        <span>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗ</span>
+        <input type="date" name="sDate" value="{{itemDetails.cBuyDate}}">
+    </div>
+
+
+
+    <div style="padding-top: 1rem;">
+        <button type="submit" class="btn btn-success">Save</button>
+    </div>
+
+
+
+
+
+
+
+  
+</form>
+    
+{% endblock %}

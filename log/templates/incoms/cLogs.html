@@ -4,14 +4,26 @@
     <h2>Active Listings</h2>
         
     <!-- To .itemTitle einai apo ta models -->
+    <table>
+        <tr>
+          <th>ΕΠΩΝΥΜΙΑ</th>
+          <th>MODEL</th>
+          <th></th>
+        </tr>
     {% for item in activeItems %}
     <div>
-        <span>
-        <h2><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></h2>
-        <h3>{{ item.cModel }}</h3>
-        </span>
+        
+            <tr>
+              <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
+              <td>{{ item.cModel }}</td>
+              <td> <button class="btn third"type="submit"><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</button></td>
+            </tr>
+           
+          
+       
     </div>
     {%endfor%}
+</table>
 
     <button class="btn third"type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
     

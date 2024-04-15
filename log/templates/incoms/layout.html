@@ -17,12 +17,18 @@
                   <li class="btn third"><a href="{% url 'cLogs' %}">COMPRESSORS LOG</a></li>
                   <li class="btn third"><a href="{% url 'cLogs' %}">ΠΑΡΑΓΓΕΛΙΕΣ ΕΞΩΤΕΡΙΚΟΥ</a></li>
                   <li class="btn third"><a href="{% url 'logout' %}">Logout</a></li>
+                  <form action="{% url 'search' %}" method = "POST">
+                    {% csrf_token %}
+                    <input class="search" type="text" name="q" placeholder="Search Encyclopedia">
+                </form>
                 {% else %}
                 <li class="btn third"><a class="nav-link" href="{% url 'login' %}">Log In</a>
                 </li>
                 <li class="btn third"><a class="nav-link" href="{% url 'register' %}">Register</a>
                 </li>
+                
                 {% endif %}
+                
                 </ul>
               </nav>
         </div>

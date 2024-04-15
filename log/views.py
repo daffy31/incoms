@@ -5,6 +5,8 @@ from django.shortcuts import render
 from django.urls import reverse
 from .models import User, cList
 
+
+
 # Create your views here.
 
 def index(request):
@@ -99,7 +101,7 @@ def newCEtry(request):
         # We save the new object to our database
         newItem.save()
 
-        return HttpResponseRedirect(reverse(index))
+        return HttpResponseRedirect(reverse(cLogs))
     
 def itemview(request, id):
     
@@ -112,3 +114,32 @@ def itemview(request, id):
         "itemDetails":itemDetails,
        
     })
+
+def search(request):
+    # Check if the request is a post request.
+    if request.method == 'POST':
+        # Retrieve the search query entered by the user
+        search_query = request.POST['q']
+        # Filter your model by the search query
+        posts = cList.objects.filter(cOwner=search_query)
+        return render(request, 'incoms/search.html', {'query':search_query, 'posts':posts})
+        # return HttpResponse("Ok")
+    else:
+        return HttpResponse("NO ENTRIES")
+    
+
+def editEntry(request, id):
+        activeItems = cList.objects.all()
+        itemDetails = cList.objects.get(id = id)
+        return render(request, "incoms/editEntry.html", {
+            "itemDetails": itemDetails,
+            "activeItems":activeItems,
+        })
+
+def saveEdit(request, id):
+        itemDetails = cList.objects.get(id = id)
+        itemDetails.cOwner = request.POST["customer"]
+        itemDetails.cModel = request.POST["model"]
+        itemDetails.cSerial = request.POST["serial"]
+        itemDetails.save()
+        return HttpResponseRedirect(reverse(cLogs))
