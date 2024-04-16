@@ -3,7 +3,7 @@
 {% block body %}
     <h2>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h2>
 
-<form action="{% url 'saveEdit' id=itemDetails.id %}" method="POST">
+<form class="editForm" action="{% url 'saveEdit' id=itemDetails.id %}" method="POST">
     {%csrf_token%}
     <div>
         <span>ΠΕΛΑΤΗΣ</span>

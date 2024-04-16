@@ -107,12 +107,14 @@ def itemview(request, id):
     
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
+    visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
    
     
     return render(request, "incoms/itemview.html", {
 
         
         "itemDetails":itemDetails,
+        "visits":visit,
         
     })
 

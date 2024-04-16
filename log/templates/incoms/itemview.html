@@ -38,7 +38,33 @@
       
       
   </table>
-
+  <table>
+    <thead>
+      <tr>
+        <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+        <th>ΕΝΕΡΓΕΙΑ</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+  
+  
+      {% for visit in visits%}
+          <tr>
+            
+            <td>{{ visit.visitDate }}</td>
+          
+            <td>{{ visit.visitReason}}</td>
+            
+            
+          </tr>
+         {% endfor %}
+        
+          <tbody>
+  
+  
+</table>
+ 
 
   <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
                 

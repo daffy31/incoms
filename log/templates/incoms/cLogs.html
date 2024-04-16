@@ -2,32 +2,26 @@
 
 {% block body %}
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
-        
     <!-- To .itemTitle einai apo ta models -->
     <table>
-      <thead>
-        <tr>
-          <th>ΕΠΩΝΥΜΙΑ</th>
-          <th>MODEL</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
+    <thead>
+      <tr>
+        <th>ΕΠΩΝΥΜΙΑ</th>
+        <th>MODEL</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
     {% for item in activeItems %}
-    
-        
-            <tr>
-              <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
-              <td>{{ item.cModel }}</td>
-              <td> <h5><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</h5></td>
-            </tr>
-           
-          
-            <tbody>
-    
+      <tr>
+        <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
+        <td>{{ item.cModel }}</td>
+        <td> <h5><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</h5></td>
+      </tr>      
     {%endfor%}
+    </tbody>
 </table>
 
-    <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
+<button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
     
 {% endblock %}

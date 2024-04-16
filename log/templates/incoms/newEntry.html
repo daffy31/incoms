@@ -3,7 +3,7 @@
 {% block body %}
     <h1>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h1>
 
-<form action="{% url 'newCEtry' %}" method="POST">
+<form class="editForm" action="{% url 'newCEtry' %}" method="POST">
     {%csrf_token%}
     <fieldset>
         <label >ΕΠΩΝΥΜΙΑ: <input id="first-name" name="customer" type="text" required /></label>
