@@ -1,0 +1,22 @@
+{% extends "incoms/layout.html" %}
+
+{% block body %}
+    <h2>ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</h2>
+<form action="{% url 'saveVisit' id=itemDetails.id %}" method="POST">
+    {%csrf_token%}
+    <fieldset>       
+        <label>ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ: <input name="vDate" type="date" required /></label>
+        <select name="category">
+                    <option selected disabled>Choose Category</option>
+                    {%for category in categories%}
+                        <option>{{category}}</option>
+                    {%endfor%}
+        </select>
+         <button class="btn third" type="submit">Save</button>
+      </fieldset>
+      
+    </form>
+   
+    
+    
+{% endblock %}

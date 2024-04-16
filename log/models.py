@@ -15,3 +15,18 @@ class cList(models.Model):
 
     def __str__(self) -> str:
         return self.cOwner
+
+class visitCategory(models.Model):
+    visitReason = models.CharField(max_length=64)
+
+    def __str__(self) -> str:
+        return self.visitReason
+
+class cVisit(models.Model):
+    itemDetails = models.ForeignKey(cList, on_delete=models.Case, blank='True', null='True', related_name="details")
+    visitReason = models.ForeignKey(visitCategory, on_delete=models.CASCADE, blank="True", null="True", related_name="vReason")
+    visitDate = models.DateField()
+
+    
+    
+

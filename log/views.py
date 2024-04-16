@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from .models import User, cList
+from .models import User, cList, cVisit, visitCategory
 
 
 
@@ -68,7 +68,7 @@ def register(request):
     
 def cLogs(request):
   
-        activeItems = cList.objects.all()
+        activeItems = cList.objects.order_by("cOwner").all()
     
         return render(request, "incoms/cLogs.html",{
             "activeItems":activeItems,
@@ -107,12 +107,13 @@ def itemview(request, id):
     
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
+   
     
     return render(request, "incoms/itemview.html", {
 
         
         "itemDetails":itemDetails,
-       
+        
     })
 
 def search(request):
@@ -143,3 +144,32 @@ def saveEdit(request, id):
         itemDetails.cSerial = request.POST["serial"]
         itemDetails.save()
         return HttpResponseRedirect(reverse(cLogs))
+
+
+def newVisit(request, id):
+   if request.method == "GET":
+        itemDetails = cList.objects.get(id = id)
+        allCategories = visitCategory.objects.all()
+        return render(request, "incoms/newVisit.html", {
+        "categories":allCategories,
+        "itemDetails": itemDetails
+    })
+   
+def saveVisit(request, id):
+    itemDetails = cList.objects.get(id = id)
+    
+    vCategory = request.POST['category']
+    vDate = request.POST['vDate']
+
+    categoryInstance =  visitCategory.objects.get(visitReason = vCategory)
+
+    visit = cVisit(
+        visitReason = categoryInstance,
+        visitDate = vDate,
+        itemDetails = itemDetails
+    )
+
+    visit.save()
+    
+    return HttpResponseRedirect(reverse("itemview", args=(id, ))) 
+   

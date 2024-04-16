@@ -15,6 +15,8 @@ urlpatterns = [
     path("search", views.search, name="search"),
     path("editEntry/<int:id>", views.editEntry, name="editEntry"),
     path("saveEdit/<int:id>", views.saveEdit, name="saveEdit"),
+    path("newVisit/<int:id>", views.newVisit, name="newVisit"),
+    path("saveVisit/<int:id>", views.saveVisit, name="saveVisit"),
     
 
    

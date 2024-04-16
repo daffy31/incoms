@@ -6,10 +6,10 @@
 <form action="{% url 'newCEtry' %}" method="POST">
     {%csrf_token%}
     <fieldset>
-        <label>ΕΠΩΝΥΜΙΑ: <input id="first-name" name="customer" type="text" required /></label>
-        <label>MODEL <input id="last-name" name="model" type="text" required /></label>
-        <label>S/N: <input id="email" name="serial" type="text" required /></label>
-        <label>ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗΣ: <input id="new-password" name="sDate" type="date" required /></label>
+        <label >ΕΠΩΝΥΜΙΑ: <input id="first-name" name="customer" type="text" required /></label>
+        <label >MODEL <input id="last-name" name="model" type="text" required /></label>
+        <label >S/N: <input id="email" name="serial" type="text" required /></label>
+        <label >ΗΜΕΡΟΜΗΝΙΑ ΠΩΛΗΣΗΣ: <input name="sDate" type="date" required /></label>
       </fieldset>
 
     {% comment %} <div>
