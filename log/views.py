@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import User, cList, cVisit, visitCategory
+from datetime import datetime, timedelta
 
 
 
@@ -110,11 +111,15 @@ def itemview(request, id):
     visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
    
     
+   
+    
     return render(request, "incoms/itemview.html", {
 
         
         "itemDetails":itemDetails,
         "visits":visit,
+        
+        
         
     })
 

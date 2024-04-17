@@ -7,6 +7,8 @@ html, body {
     font-family: "Montserrat", sans-serif;
     font-size: 16px;
   }
+
+ 
   
 /* BUTTONS STYLE */
 .btn {
@@ -84,7 +86,7 @@ html, body {
 
   a {
     text-decoration: none;
-    color: #0d47a1
+    color: black;
   }
 
 
@@ -98,13 +100,13 @@ tbody td {
      from transparent to white on hover */
   background-color: rgba(255,255,255,0);
   transition: all 0.5s linear; 
-  transition-delay: 0.3s, 0s;
+  transition-delay: 0.5s, 0s;
   /* 2. Animate the opacity on hover */
   opacity: 0.6;
-  background-color: orange;
+  background-color: white;
 }
 tbody tr:hover td {
-  background-color: white;
+  background-color: orange;
   transition-delay: 0s, 0s;
   opacity: 1;
   /* font-size: 1.5rem; */
@@ -119,12 +121,13 @@ td {
   text-align: center;
 }
 
+
 /* tr:nth-child(even){
   background-color: #FA8E2A;
 } */
 
 /* tr:hover td {
-  transform: scale(0.7);
+  transform: scale(1.2);
 } */
 
 

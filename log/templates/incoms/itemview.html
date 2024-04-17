@@ -34,7 +34,8 @@
               </tr>
              
             
-              <tbody>
+            </tbody>
+            
       
       
   </table>
@@ -61,15 +62,18 @@
          {% endfor %}
         
           <tbody>
+            
   
   
 </table>
  
 
-  <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
+  <span><button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
+    <button class="btn third"><a href="{% url 'editEntry' id=itemDetails.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</a></button>
+  </span>
                 
   
 
-
+  
 
 {% endblock %}

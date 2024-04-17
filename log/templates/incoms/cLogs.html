@@ -1,14 +1,17 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
+<div>
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
+    <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
+</div>
     <!-- To .itemTitle einai apo ta models -->
     <table>
     <thead>
       <tr>
         <th>ΕΠΩΝΥΜΙΑ</th>
         <th>MODEL</th>
-        <th></th>
+        <th>Warranty</th>
       </tr>
     </thead>
     <tbody>
@@ -16,12 +19,13 @@
       <tr>
         <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
         <td>{{ item.cModel }}</td>
-        <td> <h5><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</h5></td>
+        <td>{{ item.warrantyVoid}}</td>
+        {% comment %} <td> <button class="clogsButton"><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</button></td> {% endcomment %}
       </tr>      
     {%endfor%}
     </tbody>
 </table>
 
-<button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</button>
+
     
 {% endblock %}

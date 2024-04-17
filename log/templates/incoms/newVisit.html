@@ -6,7 +6,7 @@
     {%csrf_token%}
     <fieldset>       
         <label>ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ: <input name="vDate" type="date" required /></label>
-        <select name="category">
+        <select name="category" required>
                     <option selected disabled>Choose Category</option>
                     {%for category in categories%}
                         <option>{{category}}</option>

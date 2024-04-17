@@ -13,6 +13,13 @@ class cList(models.Model):
     cSerial = models.CharField(max_length=32)
     cBuyDate = models.DateField()
 
+    def warrantyVoid(self):
+        if (datetime.date.today() - self.cBuyDate).days > 730:
+            return "Warranty Void"
+        else:
+            return "Warranty Valid"
+        
+
     def __str__(self) -> str:
         return self.cOwner
 
