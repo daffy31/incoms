@@ -44,6 +44,8 @@
       <tr>
         <th>ΗΜΕΡΟΜΗΝΙΑ</th>
         <th>ΕΝΕΡΓΕΙΑ</th>
+        <th>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ</th>
+        <th>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</th>
      
       </tr>
     </thead>
@@ -53,9 +55,10 @@
       {% for visit in visits%}
           <tr>
             
-            <td>{{ visit.visitDate }}</td>
-          
+            <td>{{ visit.visitDate }}</td>          
             <td>{{ visit.visitReason}}</td>
+            <td>{{ visit.loadHours }}</td>
+            <td>{{ visit.workingHours }}</td>
             
             
           </tr>

@@ -70,9 +70,11 @@ def register(request):
 def cLogs(request):
   
         activeItems = cList.objects.order_by("cOwner").all()
+        
     
         return render(request, "incoms/cLogs.html",{
             "activeItems":activeItems,
+            
             
         })
 
@@ -109,18 +111,13 @@ def itemview(request, id):
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
     visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
-   
-    
-   
-    
+      
     return render(request, "incoms/itemview.html", {
 
         
         "itemDetails":itemDetails,
         "visits":visit,
-        
-        
-        
+                
     })
 
 def search(request):
@@ -137,19 +134,23 @@ def search(request):
     
 
 def editEntry(request, id):
-        activeItems = cList.objects.all()
+        
         itemDetails = cList.objects.get(id = id)
+        
         return render(request, "incoms/editEntry.html", {
             "itemDetails": itemDetails,
-            "activeItems":activeItems,
+            
         })
 
 def saveEdit(request, id):
         itemDetails = cList.objects.get(id = id)
+        aModel = cVisit.objects.get(id = itemDetails.id)
+
         itemDetails.cOwner = request.POST["customer"]
         itemDetails.cModel = request.POST["model"]
         itemDetails.cSerial = request.POST["serial"]
         itemDetails.save()
+        
         return HttpResponseRedirect(reverse(cLogs))
 
 
@@ -167,13 +168,17 @@ def saveVisit(request, id):
     
     vCategory = request.POST['category']
     vDate = request.POST['vDate']
+    vLoad = request.POST['vLoad']
+    vHours = request.POST['vHours']
 
     categoryInstance =  visitCategory.objects.get(visitReason = vCategory)
 
     visit = cVisit(
         visitReason = categoryInstance,
         visitDate = vDate,
-        itemDetails = itemDetails
+        itemDetails = itemDetails,
+        loadHours = vLoad,
+        workingHours = vHours,
     )
 
     visit.save()

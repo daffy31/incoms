@@ -2,6 +2,7 @@
 
 {% block body %}
 <div>
+  
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
     <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
 </div>
@@ -11,7 +12,7 @@
       <tr>
         <th>ΕΠΩΝΥΜΙΑ</th>
         <th>MODEL</th>
-        <th>Warranty</th>
+        <th>WARRANTY</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +20,17 @@
       <tr>
         <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
         <td>{{ item.cModel }}</td>
-        <td>{{ item.warrantyVoid}}</td>
+
+        {% if item.warrantyVoid %}
+        <div>
+          <td class="warrantyVoid">WARRANTY VOID</td>
+        </div>
+        {% else %}
+        <div>
+          <td class="warrantyOk">WARRANTY OK</td>
+        </div>
+        {% endif %}
+        {% comment %} <td>{{ item.warrantyVoid}}</td> {% endcomment %}
         {% comment %} <td> <button class="clogsButton"><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</button></td> {% endcomment %}
       </tr>      
     {%endfor%}

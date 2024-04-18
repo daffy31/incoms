@@ -144,6 +144,13 @@ th, td {
   
 }
 
+.warrantyVoid{
+  color:red;
+}
+.warrantyOk{
+  color: green;
+}
+
 /* FORM */
 
 h1, p {

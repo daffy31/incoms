@@ -14,10 +14,10 @@ class cList(models.Model):
     cBuyDate = models.DateField()
 
     def warrantyVoid(self):
-        if (datetime.date.today() - self.cBuyDate).days > 730:
-            return "Warranty Void"
-        else:
-            return "Warranty Valid"
+        return (datetime.date.today() - self.cBuyDate).days > 730
+        #     return "Warranty Void"
+        # else:
+        #     return "Warranty Valid"
         
 
     def __str__(self) -> str:
@@ -33,6 +33,8 @@ class cVisit(models.Model):
     itemDetails = models.ForeignKey(cList, on_delete=models.Case, blank='True', null='True', related_name="details")
     visitReason = models.ForeignKey(visitCategory, on_delete=models.CASCADE, blank="True", null="True", related_name="vReason")
     visitDate = models.DateField()
+    workingHours = models.IntegerField(default=0)
+    loadHours = models.IntegerField(default=0)
 
     
     
