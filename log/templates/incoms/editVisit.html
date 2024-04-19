@@ -1,0 +1,48 @@
+{% extends "incoms/layout.html" %}
+
+{% block body %}
+    <h2>ΕΠΕΞΕΡΓΑΣΙΑ ΕΠΙΣΚΕΨΗΣ</h2>
+    <h1>ID:{{visitDetails.id}}</h1>
+
+<form class="editForm" id ="newProjectForm" action="{% url 'saveEditVisit' id=visitDetails.id %}" method="POST">
+    {%csrf_token%}
+    {% comment %} <div>
+        <span>ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ:</span>
+        <input type="date"  name="vDate" value="{{visitDetails.vDate}}">
+    </div> {% endcomment %}
+
+    <div>
+        <span>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ:</span>
+        <input type="number"  name="vLoad" value="{{visitDetails.loadHours}}">
+    </div>
+      
+    <div>
+        <span>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ:</span>
+        <input type="number"  name="vHours" value="{{visitDetails.workingHours}}">
+    </div>
+
+    <div>
+        {% comment %} <select name="category" value="{{visitDetails.visitReason}}" required>
+            <option selected disabled>Choose Category</option>
+            {%for category in categories%}
+                <option>{{category}}</option>
+            {%endfor%}
+</select> {% endcomment %}
+ <button class="btn third" type="submit">Save</button>
+    </div>
+
+
+   
+    
+
+
+
+
+
+
+
+
+  
+</form>
+    
+{% endblock %}

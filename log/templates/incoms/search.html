@@ -5,10 +5,10 @@
     <div>
         <div>
         <!-- loop through search query -->
-        {% for post in posts %}
+        {% for result in results %}
             <div>
                 <!-- return search query -->
-                <p>{{post.cOwner}}</p>
+                <p>{{result}}</p>
             </div>
         {% endfor %}
         </div>

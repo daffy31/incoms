@@ -71,6 +71,7 @@ def cLogs(request):
   
         activeItems = cList.objects.order_by("cOwner").all()
         
+        
     
         return render(request, "incoms/cLogs.html",{
             "activeItems":activeItems,
@@ -110,6 +111,7 @@ def itemview(request, id):
     
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
+    visitDetails = cList.objects.get(id = id)
     visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
       
     return render(request, "incoms/itemview.html", {
@@ -117,17 +119,18 @@ def itemview(request, id):
         
         "itemDetails":itemDetails,
         "visits":visit,
+        "visitDetails":visitDetails
                 
     })
 
 def search(request):
-    # Check if the request is a post request.
+    # Check if the request is a post request.-
     if request.method == 'POST':
         # Retrieve the search query entered by the user
         search_query = request.POST['q']
         # Filter your model by the search query
-        posts = cList.objects.filter(cOwner=search_query)
-        return render(request, 'incoms/search.html', {'query':search_query, 'posts':posts})
+        results = cList.objects.filter(cOwner__contains=search_query.upper())
+        return render(request, 'incoms/search.html', {'query':search_query, 'results':results})
         # return HttpResponse("Ok")
     else:
         return HttpResponse("NO ENTRIES")
@@ -142,6 +145,18 @@ def editEntry(request, id):
             
         })
 
+def editVisit(request, id):
+        
+        # itemDetails = cList.objects.get(id = id)
+        visitDetails = cVisit.objects.get(id = id)
+        
+        return render(request, "incoms/editVisit.html", {
+            # "itemDetails": itemDetails,
+            "visitDetails":visitDetails
+            
+        })
+
+# --------------- EDITS ---------------
 def saveEdit(request, id):
         itemDetails = cList.objects.get(id = id)
         aModel = cVisit.objects.get(id = itemDetails.id)
@@ -153,15 +168,29 @@ def saveEdit(request, id):
         
         return HttpResponseRedirect(reverse(cLogs))
 
+def saveEditVisit(request, id):
+    itemDetails = cList.objects.get(id = id)
+    visitDetails = cVisit.objects.get(id = itemDetails.id)
+
+    # visitDetails.visitDate = request.POST["vDate"]
+    visitDetails.loadHours = request.POST["vLoad"]
+    visitDetails.workingHours = request.POST["vHours"]
+    # visitDetails.visitReason = request.POST["category"]
+    visitDetails.save()
+
+    return HttpResponseRedirect(reverse(cLogs))
+    
+
 
 def newVisit(request, id):
-   if request.method == "GET":
-        itemDetails = cList.objects.get(id = id)
-        allCategories = visitCategory.objects.all()
-        return render(request, "incoms/newVisit.html", {
-        "categories":allCategories,
-        "itemDetails": itemDetails
-    })
+        if request.method == "GET":
+            itemDetails = cList.objects.get(id = id)
+            allCategories = visitCategory.objects.all()
+            return render(request, "incoms/newVisit.html", {
+            "categories":allCategories,
+            "itemDetails": itemDetails
+            })
+
    
 def saveVisit(request, id):
     itemDetails = cList.objects.get(id = id)

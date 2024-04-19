@@ -2,7 +2,10 @@
 
 {% block body %}
 <div>
-  
+  <form action="{% url 'search' %}" method = "POST">
+    {% csrf_token %}
+    <input class="search" type="text" name="q" placeholder="Search">
+</form>
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
     <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
 </div>
@@ -27,9 +30,10 @@
         </div>
         {% else %}
         <div>
-          <td class="warrantyOk">WARRANTY OK</td>
+          <td class="warrantyOk">{{ item.remainingDays }} days until void</td>
         </div>
         {% endif %}
+        
         {% comment %} <td>{{ item.warrantyVoid}}</td> {% endcomment %}
         {% comment %} <td> <button class="clogsButton"><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</button></td> {% endcomment %}
       </tr>      

@@ -14,9 +14,11 @@ urlpatterns = [
     path("itemview/<int:id>", views.itemview, name="itemview"),
     path("search", views.search, name="search"),
     path("editEntry/<int:id>", views.editEntry, name="editEntry"),
+    path("editVisit/<int:id>", views.editVisit, name="editVisit"),
     path("saveEdit/<int:id>", views.saveEdit, name="saveEdit"),
     path("newVisit/<int:id>", views.newVisit, name="newVisit"),
     path("saveVisit/<int:id>", views.saveVisit, name="saveVisit"),
+    path("saveEditVisit/<int:id>", views.saveEditVisit, name="saveEditVisit"),
     
 
    

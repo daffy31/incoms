@@ -1,10 +1,10 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
-    <h2>ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</h2>
+    <h2>ΕΠΕΞΕΡΓΑΣΙΑ ΚΑΤΑΧΩΡΗΣΗΣ</h2>
     <h1>ID:{{visitDetails.id}}</h1>
 
-<form class="editForm" action="{% url 'saveEdit' id=itemDetails.id %}" method="POST">
+<form class="editForm" id ="newProjectForm" action="{% url 'saveEdit' id=itemDetails.id %}" method="POST">
     {%csrf_token%}
     <div>
         <span>ΠΕΛΑΤΗΣ</span>
@@ -18,7 +18,7 @@
       
     <div>
         <span>S/N</span>
-        <input type="text"  name="serial" value="{{visitDetails.cSerial}}">
+        <input type="text"  name="serial" value="{{itemDetails.cSerial}}">
     </div>
 
     <div>
@@ -29,8 +29,12 @@
 
 
     <div>
-        <button class="btn third" type="submit" >Save</button>
+        <button id = "demo"class="btn third" type="submit" >Save</button>
     </div>
+
+   
+    
+
 
 
 

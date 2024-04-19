@@ -1,82 +1,59 @@
 
 {% extends "incoms/layout.html" %}
 
-
 {% block body %}
 
+  <table>
+    <thead>
+        <tr>
+        <th>ID</th>
+        <th>ΕΠΩΝΥΜΙΑ</th>
+        <th>MODEL</th>
+        <th>S/N</th>
+        <th>ΗΜΕΡΟΜΗΝΙΑ ΑΓΟΡΑΣ</th>
+        </tr>
+    </thead>
 
-    <!-- Show all item details -->
-    {% comment %} <h2>ΠΕΛΑΤΗΣ: {{itemDetails.cOwner}}</h2>
-    <h2>ΜΟΝΤΕΛΟ: {{ itemDetails.cModel }}</h2>
-    <h2>S/N: {{ itemDetails.cSerial }}</h2>
-    <h2>ΤΙΜΗ ΑΓΟΡΑΣ:{{ itemDetails.cPrice }}</h2>
-    <h2>ΗΜΕΡΟΜΗΝΙΑ ΑΓΟΡΑΣ: {{ itemDetails.cBuyDate }}</h2> {% endcomment %}
-    
-    <table>
-        <thead>
-          <tr>
-            <th>ΕΠΩΝΥΜΙΑ</th>
-            <th>MODEL</th>
-            <th>S/N</th>
-            <th>ΗΜΕΡΟΜΗΝΙΑ ΑΓΟΡΑΣ</th>
-          </tr>
-        </thead>
-        <tbody>
-      
-      
-          
-              <tr>
-                <td>{{ itemDetails.cOwner }}</a></td>
-                <td>{{ itemDetails.cModel }}</td>
-                <td>{{ itemDetails.cSerial }}</td>
-                <td>{{ itemDetails.cBuyDate }}</td>
-                
-              </tr>
-             
-            
-            </tbody>
-            
-      
-      
+    <tbody>
+      <tr>
+      <td>{{ itemDetails.id }}</td>
+      <td>{{ itemDetails.cOwner }}</td>
+      <td>{{ itemDetails.cModel }}</td>
+      <td>{{ itemDetails.cSerial }}</td>
+      <td>{{ itemDetails.cBuyDate }}</td>
+      </tr>
+    </tbody>
   </table>
+
   <table>
     <thead>
       <tr>
-        <th>ΗΜΕΡΟΜΗΝΙΑ</th>
-        <th>ΕΝΕΡΓΕΙΑ</th>
-        <th>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ</th>
-        <th>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</th>
-     
+      <th>ID</th>
+      <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+      <th>ΕΝΕΡΓΕΙΑ</th>
+      <th>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ</th>
+      <th>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</th>
+      <th></th>
       </tr>
     </thead>
-    <tbody>
-  
-  
-      {% for visit in visits%}
-          <tr>
-            
-            <td>{{ visit.visitDate }}</td>          
-            <td>{{ visit.visitReason}}</td>
-            <td>{{ visit.loadHours }}</td>
-            <td>{{ visit.workingHours }}</td>
-            
-            
-          </tr>
-         {% endfor %}
-        
-          <tbody>
-            
-  
-  
-</table>
- 
 
-  <span><button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
+    <tbody>
+      {% for visit in visits%}
+        <tr>
+        <td>{{ visit.id }}</td>
+        <td>{{ visit.visitDate }}</td>          
+        <td>{{ visit.visitReason}}</td>
+        <td>{{ visit.loadHours }}</td>
+        <td>{{ visit.workingHours }}</td>
+        <td><button class=""><a href="{% url 'editVisit' id=visit.id %}">EDIT</a></button></td>
+        </tr>
+      {% endfor %}  
+    </tbody>
+  </table>
+
+  <span>
+    <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
     <button class="btn third"><a href="{% url 'editEntry' id=itemDetails.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</a></button>
   </span>
-                
-  
-
-  
 
 {% endblock %}

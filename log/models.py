@@ -15,9 +15,9 @@ class cList(models.Model):
 
     def warrantyVoid(self):
         return (datetime.date.today() - self.cBuyDate).days > 730
-        #     return "Warranty Void"
-        # else:
-        #     return "Warranty Valid"
+        
+    def remainingDays(self):
+        return 730 - (datetime.date.today() - self.cBuyDate).days
         
 
     def __str__(self) -> str:
