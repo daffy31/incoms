@@ -12,6 +12,8 @@ class cList(models.Model):
     cModel = models.CharField(max_length=32)
     cSerial = models.CharField(max_length=32)
     cBuyDate = models.DateField()
+    cTechnician = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name="technician")
+    
 
     def dateRender(self):
         return self.cBuyDate.strftime("%Y-%m-%d") #http://www.learningaboutelectronics.com/Articles/How-to-extract-the-year-from-a-DateTimeField-in-Django.php
@@ -38,6 +40,10 @@ class cVisit(models.Model):
     visitDate = models.DateField()
     workingHours = models.IntegerField(default=0)
     loadHours = models.IntegerField(default=0)
+    cNotes = models.TextField(default="")
+
+    def dateRender(self):
+        return self.visitDate.strftime("%Y-%m-%d")
 
     
     

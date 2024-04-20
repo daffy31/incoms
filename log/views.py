@@ -86,6 +86,7 @@ def newEntry(request):
 def newCEtry(request):
 
     if request.method == "POST":
+        loggedUser = request.user
         Vcustomer = request.POST["customer"]
         Vmodel = request.POST["model"]
         Vserial = request.POST["serial"]
@@ -100,6 +101,7 @@ def newCEtry(request):
             cModel = Vmodel,
             cSerial = Vserial,
             cBuyDate = VsDate,
+            cTechnician = loggedUser
             
         )
         # We save the new object to our database
@@ -111,6 +113,7 @@ def itemview(request, id):
     
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
+    loggedUser = request.user
     visitDetails = cList.objects.get(id = id)
     visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
       
@@ -119,7 +122,8 @@ def itemview(request, id):
         
         "itemDetails":itemDetails,
         "visits":visit,
-        "visitDetails":visitDetails
+        "visitDetails":visitDetails,
+        "loggedUser":loggedUser
                 
     })
 
@@ -148,11 +152,11 @@ def editEntry(request, id):
 
 def editVisit(request, id):
         
-        # itemDetails = cList.objects.get(id = id)
+        
         visitDetails = cVisit.objects.get(id = id)
         
         return render(request, "incoms/editVisit.html", {
-            "itemDetails": 1,
+            
             "visitDetails":visitDetails
             
         })
@@ -177,6 +181,7 @@ def saveEditVisit(request, id):
     # visitDetails.visitDate = request.POST["vDate"]
     visitDetails.loadHours = request.POST["vLoad"]
     visitDetails.workingHours = request.POST["vHours"]
+    visitDetails.cNotes = request.POST["vNotes"]
     # visitDetails.visitReason = request.POST["category"]
     visitDetails.save()
 
@@ -202,6 +207,7 @@ def saveVisit(request, id):
     vDate = request.POST['vDate']
     vLoad = request.POST['vLoad']
     vHours = request.POST['vHours']
+    vNotes = request.POST['vNotes']
 
     categoryInstance =  visitCategory.objects.get(visitReason = vCategory)
 
@@ -211,9 +217,10 @@ def saveVisit(request, id):
         itemDetails = itemDetails,
         loadHours = vLoad,
         workingHours = vHours,
+        cNotes = vNotes,
     )
 
     visit.save()
     
-    return HttpResponseRedirect(reverse(cLogs)) 
+    return HttpResponseRedirect(reverse(itemview, args=(id, ))) 
    

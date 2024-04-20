@@ -23,6 +23,13 @@
     </div>
 
     <div>
+        <span>ΗΜΕΡΟΜΗΝΙΑ</span>
+        <input type="date" name="sDate" value="{{visitDetails.dateRender}}">
+    </div>
+    
+    <label>ΣΗΜΕΙΩΣΕΙΣ: <textarea name="vNotes" type="textarea"required>{{visitDetails.cNotes}}</textarea></label>
+
+    <div>
         {% comment %} <select name="category" value="{{visitDetails.visitReason}}" required>
             <option selected disabled>Choose Category</option>
             {%for category in categories%}

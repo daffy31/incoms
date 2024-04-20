@@ -243,3 +243,9 @@ input[type="submit"] {
   background-color: orange;
   color: white;
 }
+
+.loggedUser{
+  color: white;
+  text-align: right;
+  margin:10px;
+}

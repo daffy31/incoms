@@ -33,6 +33,7 @@
       <th>ΕΝΕΡΓΕΙΑ</th>
       <th>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ</th>
       <th>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ</th>
+      <th>NOTES</th>
       <th></th>
       </tr>
     </thead>
@@ -45,6 +46,7 @@
         <td>{{ visit.visitReason}}</td>
         <td>{{ visit.loadHours }}</td>
         <td>{{ visit.workingHours }}</td>
+        <td>{{ visit.cNotes }}</td>
         <td><button class=""><a href="{% url 'editVisit' id=visit.id %}">EDIT</a></button></td>
         </tr>
       {% endfor %}  
@@ -53,7 +55,9 @@
 
   <span>
     <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
+    {% if itemDetails.cTechnician == loggedUser %}
     <button class="btn third"><a href="{% url 'editEntry' id=itemDetails.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</a></button>
+    {%endif%}
   </span>
 
 {% endblock %}
