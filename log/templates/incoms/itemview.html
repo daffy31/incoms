@@ -2,7 +2,7 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
-
+<h2>ΠΕΛΑΤΗΣ</h2>
   <table>
     <thead>
         <tr>
@@ -24,7 +24,15 @@
       </tr>
     </tbody>
   </table>
+  
+  <span>
+    
+    {% if itemDetails.cTechnician == loggedUser %}
+    <button class="btn third"><a href="{% url 'editEntry' id=itemDetails.id %}">ΕΠΕΞΕΡΓΑΣΙΑ ΕΓΡΑΦΗΣ</a></button>
+    {%endif%}
+  </span>
 
+  <h2>ΙΣΤΟΡΙΚΟ ΕΠΙΣΚΕΨΕΩΝ</h2>
   <table>
     <thead>
       <tr>
@@ -53,11 +61,5 @@
     </tbody>
   </table>
 
-  <span>
-    <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
-    {% if itemDetails.cTechnician == loggedUser %}
-    <button class="btn third"><a href="{% url 'editEntry' id=itemDetails.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</a></button>
-    {%endif%}
-  </span>
-
+  <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
 {% endblock %}

@@ -87,9 +87,9 @@ def newCEtry(request):
 
     if request.method == "POST":
         loggedUser = request.user
-        Vcustomer = request.POST["customer"]
-        Vmodel = request.POST["model"]
-        Vserial = request.POST["serial"]
+        Vcustomer = request.POST["customer"].upper()
+        Vmodel = request.POST["model"].upper()
+        Vserial = request.POST["serial"].upper()
         VsDate = request.POST["sDate"] #This goes to html name attr
 
         #Get Data to create instance cause it is a foreign key
@@ -140,45 +140,44 @@ def search(request):
         return HttpResponse("NO ENTRIES")
     
 
+
+
+
+# --------------- EDITS ---------------
 def editEntry(request, id):
         
         itemDetails = cList.objects.get(id = id)
         
-        
         return render(request, "incoms/editEntry.html", {
+    
             "itemDetails": itemDetails,
-            
         })
+
+def saveEdit(request, id):
+        
+        itemDetails = cList.objects.get(id = id)
+        
+        itemDetails.cOwner = request.POST["customer"].upper()
+        itemDetails.cModel = request.POST["model"].upper()
+        itemDetails.cSerial = request.POST["serial"].upper()
+        itemDetails.cBuyDate = request.POST["sDate"]
+        itemDetails.save()
+        return HttpResponseRedirect(reverse(itemview, args=(id, ))) 
 
 def editVisit(request, id):
         
-        
         visitDetails = cVisit.objects.get(id = id)
-        
+        category = visitCategory.objects.all()
         return render(request, "incoms/editVisit.html", {
-            
-            "visitDetails":visitDetails
-            
+            "visitDetails":visitDetails,
+            "categories":category
         })
-
-# --------------- EDITS ---------------
-def saveEdit(request, id):
-        itemDetails = cList.objects.get(id = id)
-        
-
-        itemDetails.cOwner = request.POST["customer"]
-        itemDetails.cModel = request.POST["model"]
-        itemDetails.cSerial = request.POST["serial"]
-        itemDetails.cBuyDate = request.POST["sDate"]
-        itemDetails.save()
-        
-        return HttpResponseRedirect(reverse(itemview, args=(id, ))) 
 
 def saveEditVisit(request, id):
     
     visitDetails = cVisit.objects.get(id = id)
-
-    # visitDetails.visitDate = request.POST["vDate"]
+    
+    visitDetails.visitDate = request.POST["vDate"]
     visitDetails.loadHours = request.POST["vLoad"]
     visitDetails.workingHours = request.POST["vHours"]
     visitDetails.cNotes = request.POST["vNotes"]

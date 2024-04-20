@@ -2,10 +2,11 @@
 
 {% block body %}
 <div>
-  <form action="{% url 'cLogs/search' %}" method = "POST">
+  <form class="searchForm" action="{% url 'cLogs/search' %}" method = "POST">
     {% csrf_token %}
     <input class="search" type="text" name="q" placeholder="Search">
 </form>
+
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
     <button class="btn third" type="submit"><a href="{% url 'cLogs/newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
 </div>
