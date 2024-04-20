@@ -2,19 +2,42 @@
 
 {% block body %}
 {% if query %}
+
     <div>
-        <div>
-        <!-- loop through search query -->
-        {% for result in results %}
-            <div>
-                <!-- return search query -->
-                <p>{{result}}</p>
-            </div>
-        {% endfor %}
-        </div>
+    <table>
+        <thead>
+            <tr>
+            <th>ID</th>
+            <th>ΕΠΩΝΥΜΙΑ</th>
+            <th>MODEL</th>
+            <th>WARRANTY</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for result in results %}
+            <tr>
+            <td>{{ result.id }}</td>
+            <td><a href="{% url 'cLogs/itemview' id=result.id %}">{{ result.cOwner }}</a></td>
+            <td>{{ result.cModel }}</td>
+
+            {% if result.warrantyVoid %}
+                <div>
+                    <td class="warrantyVoid">WARRANTY VOID</td>
+                </div>
+                {% else %}
+                <div>
+                    <td class="warrantyOk">{{ result.remainingDays }} days until void</td>
+                </div>
+                {% endif %}
+            </tr>      
+            {%endfor%}
+        </tbody>
+    </table>
     </div>
+    
 {% else %}
-    <!-- return a message if the user does not enter a search query -->
     <h1>Please enter a search query</h1>
 {% endif %}
+
 {% endblock %}

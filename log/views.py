@@ -140,6 +140,7 @@ def editEntry(request, id):
         
         itemDetails = cList.objects.get(id = id)
         
+        
         return render(request, "incoms/editEntry.html", {
             "itemDetails": itemDetails,
             
@@ -151,7 +152,7 @@ def editVisit(request, id):
         visitDetails = cVisit.objects.get(id = id)
         
         return render(request, "incoms/editVisit.html", {
-            # "itemDetails": itemDetails,
+            "itemDetails": 1,
             "visitDetails":visitDetails
             
         })
@@ -159,18 +160,19 @@ def editVisit(request, id):
 # --------------- EDITS ---------------
 def saveEdit(request, id):
         itemDetails = cList.objects.get(id = id)
-        aModel = cVisit.objects.get(id = itemDetails.id)
+        
 
         itemDetails.cOwner = request.POST["customer"]
         itemDetails.cModel = request.POST["model"]
         itemDetails.cSerial = request.POST["serial"]
+        itemDetails.cBuyDate = request.POST["sDate"]
         itemDetails.save()
         
-        return HttpResponseRedirect(reverse(cLogs))
+        return HttpResponseRedirect(reverse(itemview, args=(id, ))) 
 
 def saveEditVisit(request, id):
-    itemDetails = cList.objects.get(id = id)
-    visitDetails = cVisit.objects.get(id = itemDetails.id)
+    
+    visitDetails = cVisit.objects.get(id = id)
 
     # visitDetails.visitDate = request.POST["vDate"]
     visitDetails.loadHours = request.POST["vLoad"]
@@ -183,13 +185,14 @@ def saveEditVisit(request, id):
 
 
 def newVisit(request, id):
-        if request.method == "GET":
-            itemDetails = cList.objects.get(id = id)
-            allCategories = visitCategory.objects.all()
-            return render(request, "incoms/newVisit.html", {
-            "categories":allCategories,
-            "itemDetails": itemDetails
-            })
+    if request.method == "GET":
+        itemDetails = cList.objects.get(id = id)
+        allCategories = visitCategory.objects.all()
+
+        return render(request, "incoms/newVisit.html", {
+        "categories":allCategories,
+        "itemDetails": itemDetails
+        })
 
    
 def saveVisit(request, id):
@@ -212,5 +215,5 @@ def saveVisit(request, id):
 
     visit.save()
     
-    return HttpResponseRedirect(reverse("itemview", args=(id, ))) 
+    return HttpResponseRedirect(reverse(cLogs)) 
    

@@ -13,6 +13,9 @@ class cList(models.Model):
     cSerial = models.CharField(max_length=32)
     cBuyDate = models.DateField()
 
+    def dateRender(self):
+        return self.cBuyDate.strftime("%Y-%m-%d") #http://www.learningaboutelectronics.com/Articles/How-to-extract-the-year-from-a-DateTimeField-in-Django.php
+
     def warrantyVoid(self):
         return (datetime.date.today() - self.cBuyDate).days > 730
         

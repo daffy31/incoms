@@ -3,6 +3,7 @@
 {% block body %}
     <h2>ΕΠΕΞΕΡΓΑΣΙΑ ΕΠΙΣΚΕΨΗΣ</h2>
     <h1>ID:{{visitDetails.id}}</h1>
+    <h1>ID:{{itemDetails.id}}</h1>
 
 <form class="editForm" id ="newProjectForm" action="{% url 'saveEditVisit' id=visitDetails.id %}" method="POST">
     {%csrf_token%}

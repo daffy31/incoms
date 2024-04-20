@@ -2,17 +2,18 @@
 
 {% block body %}
 <div>
-  <form action="{% url 'search' %}" method = "POST">
+  <form action="{% url 'cLogs/search' %}" method = "POST">
     {% csrf_token %}
     <input class="search" type="text" name="q" placeholder="Search">
 </form>
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
-    <button class="btn third" type="submit"><a href="{% url 'newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
+    <button class="btn third" type="submit"><a href="{% url 'cLogs/newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
 </div>
     <!-- To .itemTitle einai apo ta models -->
     <table>
     <thead>
       <tr>
+        <th>ID</th>
         <th>ΕΠΩΝΥΜΙΑ</th>
         <th>MODEL</th>
         <th>WARRANTY</th>
@@ -21,7 +22,8 @@
     <tbody>
     {% for item in activeItems %}
       <tr>
-        <td><a href="{% url 'itemview' id=item.id %}">{{ item.cOwner }}</a></td>
+        <td>{{ item.id }}</td>
+        <td><a href="{% url 'cLogs/itemview' id=item.id %}">{{ item.cOwner }}</a></td>
         <td>{{ item.cModel }}</td>
 
         {% if item.warrantyVoid %}
