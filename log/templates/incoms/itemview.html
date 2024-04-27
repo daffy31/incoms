@@ -61,5 +61,6 @@
     </tbody>
   </table>
 
+  <button class="btn third" type="submit"><a href="{% url 'export_to_excel' id=itemDetails.id %}">EXPORT</a></button>
   <button class="btn third" type="submit"><a href="{% url 'newVisit' id=itemDetails.id %}">ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</a></button>
 {% endblock %}

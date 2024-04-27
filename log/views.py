@@ -4,11 +4,42 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from .models import User, cList, cVisit, visitCategory
-from datetime import datetime, timedelta
+import openpyxl
+from openpyxl import Workbook
 
 
 
 # Create your views here.
+def export_to_excel(request, id):
+    
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="export.xlsx"'
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Products"
+
+    # Add headers
+    headers = ["ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ", "ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ", "ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ","NOTES",
+               "ΛΟΓΟΣ ΕΠΙΣΚΕΨΗΣ"]
+    ws.append(headers)
+
+    # Add data from the model
+    customer = cList.objects.get(id = id)
+    products = customer.details.all()
+    
+    
+    
+    
+    for product in products:
+        a = product.visitReason_id
+        c = str(visitCategory.objects.get(pk = a))
+        ws.append([product.visitDate,product.workingHours, product.loadHours, product.cNotes, c])
+
+    # Save the workbook to the HttpResponse
+    wb.title = 'title'
+    wb.save(response)
+    return response
 
 def index(request):
     activeItems = cList.objects.all()

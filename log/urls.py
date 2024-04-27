@@ -19,6 +19,7 @@ urlpatterns = [
     path("newVisit/<int:id>", views.newVisit, name="newVisit"),
     path("saveVisit/<int:id>", views.saveVisit, name="saveVisit"),
     path("saveEditVisit/<int:id>", views.saveEditVisit, name="saveEditVisit"),
+    path("export_to_excel/<int:id>", views.export_to_excel, name="export_to_excel"),
     
 
    
