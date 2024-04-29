@@ -12,7 +12,8 @@ class cList(models.Model):
     cModel = models.CharField(max_length=32)
     cSerial = models.CharField(max_length=32)
     cBuyDate = models.DateField()
-    cTechnician = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name="technician")
+    salesman = models.CharField(max_length=32, default="")
+    
     
 
     def dateRender(self):
@@ -41,6 +42,7 @@ class cVisit(models.Model):
     workingHours = models.IntegerField(default=0)
     loadHours = models.IntegerField(default=0)
     cNotes = models.TextField(default="")
+    cTechnician = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name="technician")
 
     def dateRender(self):
         return self.visitDate.strftime("%Y-%m-%d")

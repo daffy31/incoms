@@ -17,7 +17,7 @@
         <th>ID</th>
         <th>ΕΠΩΝΥΜΙΑ</th>
         <th>MODEL</th>
-        <th>USER</th>
+        <th>SALESMAN</th>
         <th>WARRANTY</th>
       </tr>
     </thead>
@@ -27,7 +27,7 @@
         <td>{{ item.id }}</td>
         <td><a href="{% url 'cLogs/itemview' id=item.id %}">{{ item.cOwner }}</a></td>
         <td>{{ item.cModel }}</td>
-        <td>{{ item.cTechnician }}</td>
+        <td>{{ item.salesman }}</td>
 
         {% if item.warrantyVoid %}
         <div>

@@ -21,7 +21,7 @@ def export_to_excel(request, id):
 
     # Add headers
     headers = ["ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ", "ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ", "ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ","NOTES",
-               "ΛΟΓΟΣ ΕΠΙΣΚΕΨΗΣ"]
+               "ΛΟΓΟΣ ΕΠΙΣΚΕΨΗΣ","ΤΕΧΝΙΚΟΣ"]
     ws.append(headers)
 
     # Add data from the model
@@ -32,9 +32,9 @@ def export_to_excel(request, id):
     
     
     for product in products:
-        a = product.visitReason_id
-        c = str(visitCategory.objects.get(pk = a))
-        ws.append([product.visitDate,product.workingHours, product.loadHours, product.cNotes, c])
+        pkVisit = product.visitReason_id
+        reason = str(visitCategory.objects.get(pk = pkVisit))
+        ws.append([product.visitDate,product.workingHours, product.loadHours, product.cNotes, reason, str(product.cTechnician)])
 
     # Save the workbook to the HttpResponse
     wb.title = 'title'
@@ -132,7 +132,7 @@ def newCEtry(request):
             cModel = Vmodel,
             cSerial = Vserial,
             cBuyDate = VsDate,
-            cTechnician = loggedUser
+            salesman = loggedUser
             
         )
         # We save the new object to our database
@@ -234,12 +234,14 @@ def saveVisit(request, id):
     itemDetails = cList.objects.get(id = id)
     
     vCategory = request.POST['category']
+    tech = request.user
     vDate = request.POST['vDate']
     vLoad = request.POST['vLoad']
     vHours = request.POST['vHours']
     vNotes = request.POST['vNotes']
 
     categoryInstance =  visitCategory.objects.get(visitReason = vCategory)
+    
 
     visit = cVisit(
         visitReason = categoryInstance,
@@ -248,6 +250,7 @@ def saveVisit(request, id):
         loadHours = vLoad,
         workingHours = vHours,
         cNotes = vNotes,
+        cTechnician = tech
     )
 
     visit.save()
