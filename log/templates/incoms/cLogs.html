@@ -10,7 +10,7 @@
     <h2>ΚΑΤΑΧΩΡΗΣΕΙΣ ΠΩΛΗΣΕΩΝ ΑΕΡΟΣΥΜΠΙΕΣΤΩΝ</h2>
     <button class="btn third" type="submit"><a href="{% url 'cLogs/newEntry' %}">ΝΕΑ ΚΑΤΑΧΩΡΗΣΗ</a></button>
 </div>
-    <!-- To .itemTitle einai apo ta models -->
+    
     <table>
     <thead>
       <tr>
@@ -38,9 +38,8 @@
           <td class="warrantyOk">{{ item.remainingDays }} days until void</td>
         </div>
         {% endif %}
-        
-        {% comment %} <td>{{ item.warrantyVoid}}</td> {% endcomment %}
-        {% comment %} <td> <button class="clogsButton"><a href="{% url 'editEntry' id=item.id %}">ΕΠΕΞΕΡΓΑΣΙΑ</button></td> {% endcomment %}
+       
+      
       </tr>      
     {%endfor%}
     </tbody>

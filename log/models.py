@@ -12,7 +12,7 @@ class cList(models.Model):
     cModel = models.CharField(max_length=32)
     cSerial = models.CharField(max_length=32)
     cBuyDate = models.DateField()
-    salesman = models.CharField(max_length=32, default="")
+    salesman = models.CharField(max_length=32)
     
     
 

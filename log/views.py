@@ -144,7 +144,7 @@ def itemview(request, id):
     
     #id is byDefault the primary key in Django (i can change it if i want)
     itemDetails = cList.objects.get(id = id)
-    loggedUser = request.user
+    # currentUser = request.user
     visitDetails = cList.objects.get(id = id)
     visit = cVisit.objects.filter(itemDetails = itemDetails).order_by('visitDate')
       
@@ -154,7 +154,7 @@ def itemview(request, id):
         "itemDetails":itemDetails,
         "visits":visit,
         "visitDetails":visitDetails,
-        "loggedUser":loggedUser
+        "loggedUser":request.user.__str__(),
                 
     })
 
@@ -208,11 +208,12 @@ def saveEditVisit(request, id):
     
     visitDetails = cVisit.objects.get(id = id)
     
+    
     visitDetails.visitDate = request.POST["vDate"]
     visitDetails.loadHours = request.POST["vLoad"]
     visitDetails.workingHours = request.POST["vHours"]
     visitDetails.cNotes = request.POST["vNotes"]
-    # visitDetails.visitReason = request.POST["category"]
+    # visitDetails.visitReason_id = request.POST["category"]
     visitDetails.save()
 
     return HttpResponseRedirect(reverse(cLogs))

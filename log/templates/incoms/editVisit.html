@@ -7,11 +7,6 @@
 
 <form class="editForm" id ="newProjectForm" action="{% url 'saveEditVisit' id=visitDetails.id %}" method="POST">
     {%csrf_token%}
-    {% comment %} <div>
-        <span>ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ:</span>
-        <input type="date"  name="vDate" value="{{visitDetails.vDate}}">
-    </div> {% endcomment %}
-
     <div>
         <span>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ:</span>
         <input type="number"  name="vLoad" value="{{visitDetails.loadHours}}">
@@ -28,16 +23,16 @@
     </div>
     
     <label>ΣΗΜΕΙΩΣΕΙΣ: <textarea name="vNotes" type="textarea"required>{{visitDetails.cNotes}}</textarea></label>
-
     
-        {% comment %} <select name="category" required>
-            <option selected disabled>Choose Category</option>
-            {%for category in categories%}
-                <option>{{category}}</option>
-            {%endfor%}
-</select> {% endcomment %}
-<div>
- <button class="btn third" type="submit">Save</button>
+    <select name="category" required>
+    <option selected disabled>Choose Category</option>
+        {%for category in categories%}
+            <option>{{category}}</option>
+        {%endfor%}
+        </select>
+
+    <div>
+        <button class="btn third" type="submit">Save</button>
     </div>
 
 

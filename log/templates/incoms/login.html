@@ -1,24 +1,26 @@
 {% extends "incoms/layout.html" %}
 
 {% block body %}
+<h2 class="loginHeader">LOGIN</h2>
+<div class="loginContainer">
 
-    <h2 class="loginHeader">LOGIN</h2>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
 
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div>
-            <input autofocus type="text" name="username" placeholder="Username">
-        </div>
-        <div>
-            <input type="password" name="password" placeholder="Password">
-        </div>
-        <input class="btn third" type="submit" value="Login">
-    </form>
 
-    
+{% if message %}
+<div>{{ message }}</div>
+{% endif %}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <div>
+        <input autofocus type="text" name="username" placeholder="Username">
+    </div>
+    <div>
+        <input type="password" name="password" placeholder="Password">
+    </div>
+    <button class="btn third" type="submit">Login</button>
+</form>
+</div>
 
 {% endblock %}

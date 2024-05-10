@@ -12,30 +12,31 @@ html, body {
   
 /* BUTTONS STYLE */
 .btn {
-    box-sizing: border-box;
+  text-align: center;
+    /* box-sizing: border-box;
     -webkit-appearance: none;
        -moz-appearance: none;
-            appearance: none;
+            appearance: none; */
     background-color: transparent;
     border: 2px solid #e74c3c;
     border-radius: 0.6em;
     color: #e74c3c;
     cursor: pointer;
-    display: flex;
-    align-self: center;
-    font-size: 1rem;
+    /* display: flex; */
     
+    font-size: 1rem;
+    min-width: 200px;
     line-height: 0.5;
     margin: 10px;
     padding: 1.2em 1.2em;
     text-decoration: none;
-    text-align: center;
+    
     text-transform: uppercase;
-    font-family: "Montserrat", sans-serif;
+   
     font-weight: 700;
   }
   .btn:hover, .btn:focus {
-    color: #fff;
+    color: black;
     outline: 0;
   }
 .third {
@@ -121,17 +122,6 @@ td {
   text-align: center;
 }
 
-
-/* tr:nth-child(even){
-  background-color: #FA8E2A;
-} */
-
-/* tr:hover td {
-  transform: scale(1.2);
-} */
-
-
-/* Codepen styling */
 * { box-sizing: border-box }
 
 table {
@@ -217,8 +207,10 @@ input[type="submit"] {
 }
 
 /* LOG IN */
-.loginHeader{
-  text-align: center;
+.loginContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* NAVBAR */

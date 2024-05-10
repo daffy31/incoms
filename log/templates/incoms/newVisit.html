@@ -3,22 +3,22 @@
 {% block body %}
     <h2>ΚΑΤΑΧΩΡΗΣΗ ΕΠΙΣΚΕΨΗΣ</h2>
 <form class="editForm" action="{% url 'saveVisit' id=itemDetails.id %}" method="POST">
-    {%csrf_token%}
+{%csrf_token%}
     <fieldset>       
         <label>ΗΜΕΡΟΜΗΝΙΑ ΕΠΙΣΚΕΨΗΣ: <input name="vDate" type="date" required /></label>
         <label>ΩΡΕΣ ΥΠΟ ΦΟΡΤΙΟ: <input name="vLoad" type="number" required /></label>
         <label>ΩΡΕΣ ΛΕΙΤΟΥΡΓΙΑΣ: <input name="vHours" type="number" required /></label>
         <label>ΣΗΜΕΙΩΣΕΙΣ: <textarea name="vNotes" type="textarea" required></textarea></label>
         <select name="category" required>
-                    <option selected disabled>Choose Category</option>
-                    {%for category in categories%}
-                        <option>{{category}}</option>
-                    {%endfor%}
+        <option selected disabled>Choose Category</option>
+        {%for category in categories%}
+            <option>{{category}}</option>
+        {%endfor%}
         </select>
-         <button class="btn third" type="submit">Save</button>
-      </fieldset>
-      
-    </form>
+        <button class="btn third" type="submit">Save</button>
+    </fieldset>
+
+</form>
    
     
     
